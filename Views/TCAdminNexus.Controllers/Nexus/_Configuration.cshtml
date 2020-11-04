@@ -1,0 +1,49 @@
+﻿@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
+@using Kendo.Mvc.UI
+@using Microsoft.Extensions.Logging
+@using Resources
+@using TCAdmin.SDK.Web.MVC.Extensions
+@model TCAdminNexus.Configurations.BotConfiguration
+
+@using (Ajax.BeginForm("Configuration", "Nexus", new AjaxOptions {OnSuccess = "Alexr03.Common.HandleAjaxSuccess", OnBegin = "Alexr03.Common.HandleAjaxBegin", OnFailure = "Alexr03.Common.HandleAjaxFailure"}))
+{
+    @Html.AntiForgeryToken()
+    <div class="primary-toolbar">
+        @(Html.Kendo().ToolBar()
+            .Name("generalToolBar")
+            .Items(items =>
+            {
+                items.Add().Template(this.GetToolbarButton(Global.Save, "save"));
+                items.Add().Type(CommandType.Button).Icon("cancel").Text(Global.Cancel).Click("TCAdmin.Ajax.CancelClicked");
+            }))
+    </div>
+
+    <div class="primary-content">
+        <fieldset class="fieldset-form auto-focus">
+            @Html.ValidationSummary(true)
+            <ul>
+                <li>
+                    <dl>
+                        <dt>@Html.LabelFor(m => m.ClientId)</dt>
+                        <dd>@Html.Kendo().TextBoxFor(m => m.ClientId).Readonly(true)@Html.ValidationMessageFor(m => m.ClientId)@Html.TooltipFor(m => m.ClientId)</dd>
+                        <dt>@Html.LabelFor(m => m.Token)</dt>
+                        <dd>@Html.Kendo().TextBoxFor(m => m.Token).HtmlAttributes(new {type = "password"})@Html.ValidationMessageFor(m => m.Token)@Html.TooltipFor(m => m.Token)</dd>
+                        <dt>@Html.LabelFor(m => m.MinimumLogLevel)</dt>
+                        <dd>
+                            @(Html.Kendo().DropDownList().Name("MinimumLogLevel")
+                                .BindTo(Enum.GetNames(typeof(LogLevel)).ToList().Select(x => new DropDownListItem
+                                {
+                                    Text = x,
+                                    Value = ((int) Enum.Parse(typeof(LogLevel), x, true)).ToString()
+                                }))
+                                .DataValueField("Value")
+                                .DataTextField("Text")
+                                .SelectedIndex((int) Model.MinimumLogLevel))@Html.ValidationMessageFor(m => m.MinimumLogLevel)@Html.TooltipFor(m => m.MinimumLogLevel)
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+}

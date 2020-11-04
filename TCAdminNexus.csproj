@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{76FC4BA3-49D1-4221-AB60-677B05960AF6}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>TCAdminNexus</RootNamespace>
+        <AssemblyName>TCAdminNexus</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="DSharpPlus, Version=4.0.0.722, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\packages\DSharpPlus.4.0.0-nightly-00722\lib\netstandard2.0\DSharpPlus.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="DSharpPlus.CommandsNext, Version=4.0.0.722, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\packages\DSharpPlus.CommandsNext.4.0.0-nightly-00722\lib\netstandard2.0\DSharpPlus.CommandsNext.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="DSharpPlus.Interactivity, Version=4.0.0.722, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\packages\DSharpPlus.Interactivity.4.0.0-nightly-00722\lib\netstandard2.0\DSharpPlus.Interactivity.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Emzi0767.Common, Version=2.1.1.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\packages\Emzi0767.Common.2.1.1\lib\net45\Emzi0767.Common.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Kendo.Mvc, Version=2020.3.915.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\Kendo.Mvc.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+          <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0-rc.1.20451.14\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+          <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0-rc.1.20451.14\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+          <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0-rc.1.20451.14\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+            <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0-rc.1.20451.14\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="mscorlib" />
+        <Reference Include="MySql.Data, Version=6.7.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
+          <HintPath>..\packages\MySql.Data.6.7.9\lib\net45\MySql.Data.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+          <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Collections.Immutable.1.7.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.ComponentModel.Composition" />
+        <Reference Include="System.Configuration" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+          <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Net.WebSockets, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Net.WebSockets.4.3.0\lib\net46\System.Net.WebSockets.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Net.WebSockets.Client, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Net.WebSockets.Client.4.3.2\lib\net46\System.Net.WebSockets.Client.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0-rc.1.20451.14\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+          <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+          <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web" />
+        <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.Services" />
+        <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Xml" />
+        <Reference Include="TCAdmin.Basic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.Basic.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.DatabaseProviders.MySql, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.DatabaseProviders.MySql.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.DatabaseProviders.Odbc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.DatabaseProviders.Odbc.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.DatabaseProviders.SqLite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.DatabaseProviders.SqLite.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.FtpServer.ModuleApi, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.FtpServer.ModuleApi.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.GameHosting.ModuleApi, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.GameHosting.ModuleApi.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.GameHosting.SDK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.GameHosting.SDK.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.GameHosting.SDK.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.GameHosting.SDK.Web.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.GameHosting.SDK.Web.References, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.GameHosting.SDK.Web.References.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.Helper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.Helper.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.Interfaces, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.Interfaces.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.LogProviders.Text, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.LogProviders.Text.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.SDK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.SDK.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.SDK.Language, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.SDK.Language.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.SDK.TimeZones, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.SDK.TimeZones.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.SDK.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.SDK.Web.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.SDK.Web.MVC, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.SDK.Web.MVC.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.SDK.Web.References, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.SDK.Web.References.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.Support.ModuleApi, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.Support.ModuleApi.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.Support.SDK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.Support.SDK.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.TaskScheduler.ModuleApi, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.TaskScheduler.ModuleApi.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.TaskScheduler.SDK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.TaskScheduler.SDK.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.Web.MVC, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.Web.MVC.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.Web.MVC.Mods, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2425aa97c0ce5627">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.Web.MVC.Mods.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="TCAdmin.WebServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=336a280da999c339">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\TCAdmin.WebServer.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Telerik.Web.UI, Version=2012.3.1016.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4">
+          <HintPath>..\packages\TCAdmin.2.0.159.10\lib\netstandard2.0\Telerik.Web.UI.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Attributes\CommandAttributes.cs" />
+        <Compile Include="Commands\Admin\NodeCommands.cs" />
+        <Compile Include="Commands\Admin\TaskManagerCommands.cs" />
+        <Compile Include="Commands\Admin\TcAdministrationCommands.cs" />
+        <Compile Include="Commands\Admin\UserCommands.cs" />
+        <Compile Include="Commands\Client\AccountCommands.cs" />
+        <Compile Include="Commands\Client\LinkCommands.cs" />
+        <Compile Include="Commands\Client\QueryCommands.cs" />
+        <Compile Include="Commands\Client\TCAdminCommands.cs" />
+        <Compile Include="Configurations\BotConfiguration.cs" />
+        <Compile Include="Configurations\EmbedTemplates\EmbedTemplateSettings.cs" />
+        <Compile Include="Configurations\EmbedTemplates\ErrorEmbedSettings.cs" />
+        <Compile Include="Configurations\EmbedTemplates\InfoEmbedSettings.cs" />
+        <Compile Include="Configurations\EmbedTemplates\SuccessEmbedSettings.cs" />
+        <Compile Include="Configurations\Modules\AccountServiceConfiguration.cs" />
+        <Compile Include="Configurations\Modules\FileManagerSettings.cs" />
+        <Compile Include="Configurations\Modules\LoginConfiguration.cs" />
+        <Compile Include="Configurations\Modules\PlayersMenuSettings.cs" />
+        <Compile Include="Configurations\Modules\ServiceMenuActionSettings.cs" />
+        <Compile Include="Configurations\Modules\ServiceMenuConfiguration.cs" />
+        <Compile Include="Controllers\NexusController.cs" />
+        <Compile Include="DiscordBot.cs" />
+        <Compile Include="Exceptions\CustomMessageException.cs" />
+        <Compile Include="Globals.cs" />
+        <Compile Include="Helpers\EmbedTemplates.cs" />
+        <Compile Include="Helpers\VariableReplacements.cs" />
+        <Compile Include="Logger\Logger.cs" />
+        <Compile Include="Logger\LoggingFactory.cs" />
+        <Compile Include="Models\DiscordGuildModel.cs" />
+        <Compile Include="Models\DiscordMemberModel.cs" />
+        <Compile Include="Models\NexusGuildModel.cs" />
+        <Compile Include="Models\NexusPowerRequest.cs" />
+        <Compile Include="Models\NexusViewModel.cs" />
+        <Compile Include="Modules\NexusModule.cs" />
+        <Compile Include="Modules\ServiceMenuModule.cs" />
+        <Compile Include="Objects\ActionCommandAttribute.cs" />
+        <Compile Include="Objects\ActionLog.cs" />
+        <Compile Include="Objects\Actions\FileManagerDirectory.cs" />
+        <Compile Include="Objects\ClientService\ActionsTab.cs" />
+        <Compile Include="Objects\ClientService\TaskData.cs" />
+        <Compile Include="Objects\Emulators\TCAFileManager.cs" />
+        <Compile Include="Objects\Emulators\TCAServiceMenu.cs" />
+        <Compile Include="Objects\Emulators\TCATaskManager.cs" />
+        <Compile Include="Objects\FileSystem\FileSystemUtilities.cs" />
+        <Compile Include="Objects\VirtualDirectorySecurity.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Proxy\Requests\Bot\GetPower.cs" />
+        <Compile Include="Proxy\Requests\Bot\GetStatistics.cs" />
+        <Compile Include="Proxy\Requests\Discord\GetGuild.cs" />
+        <Compile Include="Proxy\Requests\Discord\GetGuildMembers.cs" />
+        <Compile Include="Proxy\Requests\Discord\GetGuilds.cs" />
+        <Compile Include="Proxy\Requests\Discord\LeaveGuild.cs" />
+        <Compile Include="ServiceMenu\Buttons\ExitModule.cs" />
+        <Compile Include="ServiceMenu\Buttons\FileManagerButton.cs" />
+        <Compile Include="ServiceMenu\Buttons\LogViewerButton.cs" />
+        <Compile Include="ServiceMenu\Buttons\RemoteConsoleButton.cs" />
+        <Compile Include="ServiceMenu\Buttons\RestartButton.cs" />
+        <Compile Include="ServiceMenu\Buttons\StartButton.cs" />
+        <Compile Include="ServiceMenu\Buttons\StatisticGraphButton.cs" />
+        <Compile Include="ServiceMenu\Buttons\StopButton.cs" />
+        <Compile Include="Services\AccountsService.cs" />
+        <Compile Include="Services\DiscordService.cs" />
+        <Compile Include="TcAdminModule.cs" />
+        <Compile Include="Utilities\TCAdminUtilities.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="app.config" />
+      <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include=".gitignore" />
+      <Content Include="Views\Shared\Main.Plugin.Nexus.css" />
+      <Content Include="Views\TCAdminNexus.Controllers\Nexus\Guilds.cshtml" />
+      <Content Include="Views\TCAdminNexus.Controllers\Nexus\_Configuration.cshtml" />
+      <Content Include="Views\TCAdminNexus.Controllers\Nexus\Index.cshtml" />
+      <Content Include="Views\TCAdminNexus.Controllers\Nexus\_Statistics.cshtml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Analyzer Include="..\packages\MappingGenerator.1.17.442\analyzers\dotnet\cs\MappingGenerator.dll" />
+      <Analyzer Include="..\packages\MappingGenerator.1.17.442\analyzers\dotnet\cs\Pluralize.NET.dll" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Alexr03.Common\Alexr03.Common.csproj">
+        <Project>{f51453a6-0fef-4649-b1a4-57647de4a9df}</Project>
+        <Name>Alexr03.Common</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Proxy\Responses" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

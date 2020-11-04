@@ -1,0 +1,109 @@
+﻿@using TCAdmin.Interfaces.Server
+@using TCAdminNexus
+@using TCAdminNexus.Helpers
+@model TCAdminNexus.Models.NexusViewModel
+@{
+    var power = Model.Power.Status;
+}
+
+<div class="cards-container">
+    @if (Globals.NexusPermissionsManager.CurrentUserHasPermission(NexusPermissions.ViewPowerStatus))
+    {
+        <div class="k-card k-card-vertical k-text-center">
+            <div class="k-card-header">
+                <h5 class="k-card-title">Status</h5>
+                @if (power == ServiceStatus.Starting || power == ServiceStatus.Running)
+                {
+                    <div style="font-family: Segoe UI Emoji; font-size: 3rem;">🟢</div>
+                }
+                else
+                {
+                    <div style="font-family: Segoe UI Emoji; font-size: 3rem;">🔴</div>
+                }
+            </div>
+            <div class="k-card-body">
+                @if (power == ServiceStatus.Starting || power == ServiceStatus.Running)
+                {
+                    <div style="font-size: 2em; color: #008000;">@power.ToString()</div>
+                }
+                else
+                {
+                    <div style="font-size: 2em; color: red;">@power.ToString()</div>
+                }
+            </div>
+            @if (Globals.NexusPermissionsManager.CurrentUserHasPermission(NexusPermissions.StartStop))
+            {
+                <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
+                    @if (power == ServiceStatus.Starting || power == ServiceStatus.Running)
+                    {
+                        <button class="k-button k-primary k-flat" onclick="Command('stop')">Stop</button>
+                        <button class="k-button k-flat" onclick="Command('restart')">Restart</button>
+                    }
+                    else
+                    {
+                        <button class="k-button k-primary k-flat" onclick="Command('start')">Start</button>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+    <div class="k-card k-card-vertical k-text-center">
+        <div class="k-card-header">
+            <h5 class="k-card-title">Members</h5>
+            <i class="fas fa-user-friends" style="font-size: 3rem;"></i>
+        </div>
+        <div class="k-card-body">
+            <div style="font-size: 3em;">@Model.Statistics.MemberCount</div>
+        </div>
+
+    </div>
+    <div class="k-card k-card-vertical k-text-center">
+        <div class="k-card-header">
+            <h5 class="k-card-title">Joined Guilds</h5>
+            <i class="fas fa-server" style="font-size: 3rem;"></i>
+        </div>
+        <div class="k-card-body">
+            <div style="font-size: 3em;">@Model.Statistics.GuildCount</div>
+        </div>
+        <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
+            <button class="k-button k-primary k-flat" onclick="window.location = '/Nexus/Guilds'">View Joined Guilds</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+    }
+    
+    .k-card {
+        width: 285px;
+        margin: 2%;
+    }
+</style>
+
+<script>
+    function Command(action) {
+        $.ajax({
+            type: "POST",
+            url: "/Nexus/Power",
+            data: JSON.stringify({ "request": action }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (e) {
+                console.log(e);
+                if (e.responseJSON && e.responseJSON.Message)
+                    TCAdmin.Ajax.ShowBasicDialog("Nexus Power", e.responseJSON.Message);
+                kendo.ui.progress($("#tabStrip"), true);
+            },
+            success: function (e) {
+                console.log(e);
+                TCAdmin.Ajax.ShowBasicDialog("Nexus Power", e.Message);
+                kendo.ui.progress($("#tabStrip"), true);
+            }
+        });
+    }
+</script>

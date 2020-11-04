@@ -1,0 +1,51 @@
+﻿@using System.Web.Mvc.Html
+@using Kendo.Mvc.UI
+@using TCAdmin.SDK.Web.MVC.Extensions
+@using TCAdminNexus
+@using TCAdminNexus.Helpers
+@{
+    Layout = this.GetTemplateFile("Shared/Main.cshtml", true);
+}
+
+@section sidebar{
+    @Html.Partial("_DefaultSidebar")
+}
+
+@(Html.Kendo().TabStrip()
+    .Name("tabStrip")
+    .Items(items =>
+    {
+        if (Globals.NexusPermissionsManager.CurrentUserHasPermission(NexusPermissions.ViewStatistics))
+        {
+            items.Add()
+                .Text("Statistics")
+                .LoadContentFrom("Statistics", "Nexus");
+        }
+        if (Globals.NexusPermissionsManager.CurrentUserHasPermission(NexusPermissions.EditConfiguration))
+        {
+            items.Add()
+                .Text("Configuration")
+                .LoadContentFrom("Configuration", "Nexus");
+        }
+        if (Globals.NexusPermissionsManager.CurrentUserHasPermission(NexusPermissions.ViewLogs))
+        {
+            items.Add()
+                .Text("Logs")
+                .LoadContentFrom("Logs", "Nexus");
+        }
+    })
+    .SelectedIndex(0)
+    )
+
+<script>
+    $(document).ready(function() {
+        setInterval(refreshTabs, 5000);
+    });
+    
+    function refreshTabs(){
+        const tabStrip = $("#tabStrip").data("kendoTabStrip");
+        tabStrip.reload("li:eq(0)"); //Statistics
+        
+        kendo.ui.progress($("#tabStrip"), false);
+    }
+</script>

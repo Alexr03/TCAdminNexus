@@ -1,0 +1,82 @@
+﻿@using System.Web.Mvc.Html
+@using Kendo.Mvc.UI
+@using TCAdmin.SDK.Web.MVC.Extensions
+@using TCAdminNexus.Models
+
+@{
+    Layout = this.GetTemplateFile("Shared/Main.cshtml", true);
+}
+
+@section sidebar{
+    @Html.Partial("_DefaultSidebar")
+}
+
+@(Html.Kendo().Grid<DiscordGuildModel>()
+    .Name("guildList")
+    .Columns(columns =>
+    {
+        columns.Bound(x => x.Id).Hidden(true);
+        columns.Template(x => { }).ClientTemplate("<img src='#= IconUrl #' style='width:64px;'></img>").Width(90);
+        columns.Bound(x => x.Name).ClientTemplate("<h3>#= Name #</h3>");
+        columns.Command(commands => { commands.Destroy().Text("Leave"); });
+    })
+    .Filterable(x => x.Enabled(true))
+    .Scrollable(x => x.Enabled(true))
+    .Sortable(x => x.Enabled(true))
+    .Height(1400)
+    .ClientDetailTemplateId("guildInfo")
+    .DataSource(dataSource =>
+    {
+        var ajax = dataSource.Ajax();
+        ajax.Model(x => x.Id(f => f.Id));
+        ajax.Read("GuildsRead", "Nexus");
+        ajax.Destroy("GuildsDestroy", "Nexus");
+    })
+    )
+
+
+<script id="guildInfo" type="text/kendo-tmpl">
+    @(Html.Kendo().TabStrip()
+        .Name("tabStrip#=Id#")
+        .SelectedIndex(0)
+        .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In)))
+        .Items(items =>
+        {
+            items.Add()
+                .Text("Information")
+                .Content(@<text>
+                             <h1>#=Name#</h1>
+                             <div class='guildInfo'>
+                                 <img src='#=IconUrl#' /><br />
+                                 <img src='#=WidgetImage#' />
+                                 #if(Description != null) { #
+                                 <p>#= Description #</p>
+                                 #}#
+                                 <p>Feature Tier: #=PremiumTier#</p>
+                             </div>
+                          </text>
+                );
+
+            items.Add().Text("Members").Content(@<text>
+                    @(Html.Kendo().Grid<DiscordMemberModel>()
+                        .Name("guildInfoGrid_#=Id#") // template expression, to be evaluated in the master context
+                        .Columns(columns =>
+                        {
+                            columns.Bound(o => o.Id).Hidden(true);
+                            columns.Bound(o => o.Username).ClientTemplate("<h3>\\#=Username\\#\\\\\\#\\#=Discriminator\\#</h3>").Title("Username");
+                        })
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .PageSize(10)
+                            .Read(read => read.Action("MembersRead", "Nexus", new {guildId = "#=Id#"}))
+                        )
+                        .Pageable()
+                        .Sortable()
+                        .Filterable()
+                        .ToClientTemplate())
+                </text>
+                );
+        })
+        .ToClientTemplate()
+        )
+</script>
