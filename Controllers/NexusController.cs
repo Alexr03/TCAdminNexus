@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Web.Mvc;
 using Alexr03.Common.Configuration;
 using Alexr03.Common.TCAdmin.Configuration;
 using Alexr03.Common.TCAdmin.Proxy;
-using Alexr03.Common.TCAdmin.Web.Attributes.ActionFilters;
 using Alexr03.Common.Web.Attributes.ActionFilters;
-using Alexr03.Common.Web.HttpResponses;
 using DSharpPlus.Entities;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -22,6 +19,7 @@ using TCAdminNexus.Configurations;
 using TCAdminNexus.Models;
 using TCAdminNexus.Proxy.Requests.Bot;
 using TCAdminNexus.Proxy.Requests.Discord;
+using JsonNetResult = Alexr03.Common.Web.HttpResponses.JsonNetResult;
 
 namespace TCAdminNexus.Controllers
 {
@@ -30,6 +28,12 @@ namespace TCAdminNexus.Controllers
     public class NexusController : BaseController
     {
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [ParentAction("Index")]
+        public ActionResult Guilds()
         {
             return View();
         }
@@ -101,7 +105,7 @@ namespace TCAdminNexus.Controllers
         {
             Globals.NexusPermissionsManager.ThrowIfCurrentUserLackPermission(NexusPermissions.EditConfiguration);
 
-            var model = new LocalConfiguration<BotConfiguration>().GetConfiguration();
+            var model = new DatabaseConfiguration<BotConfiguration>(Globals.ModuleId, nameof(BotConfiguration)).GetConfiguration();
             return PartialView("_Configuration", model);
         }
 
@@ -109,7 +113,7 @@ namespace TCAdminNexus.Controllers
         public ActionResult Configuration(BotConfiguration model)
         {
             Globals.NexusPermissionsManager.ThrowIfCurrentUserLackPermission(NexusPermissions.EditConfiguration);
-            new LocalConfiguration<BotConfiguration>().SetConfiguration(model);
+            new DatabaseConfiguration<BotConfiguration>(Globals.ModuleId, nameof(BotConfiguration)).SetConfiguration(model);
             return PartialView("_Configuration", model);
         }
 

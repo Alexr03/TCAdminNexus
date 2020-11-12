@@ -1,0 +1,16 @@
+﻿{
+  "MinimumTcAdminVersion": "2.0.159.13",
+  "SqlProfiles": {
+    "InstallSql": "install.sql",
+    "UpdateSql": "update.sql",
+    "UninstallSql": "uninstall.sql"
+  },
+  "Dll": "TCAdminNexus.dll",
+  "MasterOnly": false,
+  "Dependencies": [
+    "DSharpPlus.dll",
+    "DSharpPlus.Interactivity.dll",
+    "DSharpPlus.CommandsNext.dll",
+    "Emzi0767.Common.dll"
+  ]
+}

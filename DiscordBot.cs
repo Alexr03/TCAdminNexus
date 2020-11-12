@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using Alexr03.Common.Configuration;
-using Alexr03.Common.TCAdmin.Proxy;
+using Alexr03.Common.TCAdmin.Configuration;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
@@ -13,9 +9,8 @@ using DSharpPlus.Entities;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Enums;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using TCAdmin.Interfaces.Logging;
 using TCAdmin.SDK;
+using TCAdmin.SDK.Mail;
 using TCAdminNexus.Commands.Admin;
 using TCAdminNexus.Commands.Client;
 using TCAdminNexus.Configurations;
@@ -29,10 +24,16 @@ namespace TCAdminNexus
         public static DiscordClient Client;
 
         public static readonly BotConfiguration NexusConfiguration =
-            new LocalConfiguration<BotConfiguration>().GetConfiguration();
+            new DatabaseConfiguration<BotConfiguration>(Globals.ModuleId, nameof(BotConfiguration)).GetConfiguration();
 
         public DiscordBot()
         {
+            var logger = Alexr03.Common.Logging.Logger.Create<DiscordBot>();
+            if (string.IsNullOrEmpty(NexusConfiguration.Token))
+            {
+                logger.Fatal($"No token is set. Configure the token in the configuration tab @ https://{new CompanyInfo(2).ControlPanelUrl}/Nexus");
+                return;
+            }
             var discordConfig = new DiscordConfiguration
             {
                 AutoReconnect = true,
@@ -65,11 +66,6 @@ namespace TCAdminNexus
 
             Client.UseCommandsNext(commandsNextConfiguration);
             var commandsNextService = Client.GetCommandsNext();
-            // var commands = GetEnumerableOfType<BaseCommandModule>();
-            // foreach (var baseCommandModule in commands)
-            // {
-            //     commandsNextService.RegisterCommands(baseCommandModule.GetType());
-            // }
 
             // Admin Commands
             commandsNextService.RegisterCommands<NodeCommands>();
@@ -95,7 +91,7 @@ namespace TCAdminNexus
                 ActivityType = ActivityType.Playing
             };
             await Client.ConnectAsync(activity);
-            var botConfiguration = new LocalConfiguration<BotConfiguration>();
+            var botConfiguration = new DatabaseConfiguration<BotConfiguration>(Globals.ModuleId, nameof(BotConfiguration));
             botConfiguration.GetConfiguration().ClientId = Client.CurrentApplication.Id;
             botConfiguration.SetConfiguration(botConfiguration.GetConfiguration());
 
