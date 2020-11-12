@@ -1,10 +1,10 @@
 ﻿<Weavers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FodyWeavers.xsd">
 	<Costura>
-		<ExcludeAssemblies>
+		<IncludeAssemblies>
 			System.*
 			Microsoft.*
 			Emzi0767.*
 			DSharpPlus.*
-		</ExcludeAssemblies>
+		</IncludeAssemblies>
 	</Costura>
 </Weavers>
