@@ -7,10 +7,5 @@
   },
   "Dll": "TCAdminNexus.dll",
   "MasterOnly": true,
-  "Dependencies": [
-    "DSharpPlus.dll",
-    "DSharpPlus.Interactivity.dll",
-    "DSharpPlus.CommandsNext.dll",
-    "Emzi0767.Common.dll"
-  ]
+  "Dependencies": [ ]
 }
