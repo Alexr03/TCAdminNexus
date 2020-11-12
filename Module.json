@@ -11,6 +11,7 @@
     "DSharpPlus.dll",
     "DSharpPlus.Interactivity.dll",
     "DSharpPlus.CommandsNext.dll",
+    "Microsoft.Bcl.AsyncInterfaces.dll",
     "Microsoft.Extensions.DependencyInjection.dll",
     "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
     "Emzi0767.Common.dll"
