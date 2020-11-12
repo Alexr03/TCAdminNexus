@@ -6,7 +6,7 @@
     "UninstallSql": "uninstall.sql"
   },
   "Dll": "TCAdminNexus.dll",
-  "MasterOnly": false,
+  "MasterOnly": true,
   "Dependencies": [
     "DSharpPlus.dll",
     "DSharpPlus.Interactivity.dll",
