@@ -31,9 +31,11 @@ namespace TCAdminNexus
             var logger = Alexr03.Common.Logging.Logger.Create<DiscordBot>();
             if (string.IsNullOrEmpty(NexusConfiguration.Token))
             {
-                logger.Fatal($"No token is set. Configure the token in the configuration tab @ https://{new CompanyInfo(2).ControlPanelUrl}/Nexus");
+                logger.Fatal(
+                    $"No token is set. Configure the token in the configuration tab @ https://{new CompanyInfo(2).ControlPanelUrl}/Nexus");
                 return;
             }
+
             var discordConfig = new DiscordConfiguration
             {
                 AutoReconnect = true,
@@ -91,9 +93,11 @@ namespace TCAdminNexus
                 ActivityType = ActivityType.Playing
             };
             await Client.ConnectAsync(activity);
-            var botConfiguration = new DatabaseConfiguration<BotConfiguration>(Globals.ModuleId, nameof(BotConfiguration));
-            botConfiguration.GetConfiguration().ClientId = Client.CurrentApplication.Id;
-            botConfiguration.SetConfiguration(botConfiguration.GetConfiguration());
+            var botConfiguration =
+                new DatabaseConfiguration<BotConfiguration>(Globals.ModuleId, nameof(BotConfiguration));
+            var configuration = botConfiguration.GetConfiguration();
+            configuration.ClientId = Client.CurrentApplication.Id;
+            botConfiguration.SetConfiguration(configuration);
 
             await System.Threading.Tasks.Task.Delay(0);
         }
