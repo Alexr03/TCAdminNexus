@@ -35,7 +35,7 @@ namespace TCAdminNexus
                     $"No token is set. Configure the token in the configuration tab @ https://{new CompanyInfo(2).ControlPanelUrl}/Nexus");
                 return;
             }
-
+            
             var discordConfig = new DiscordConfiguration
             {
                 AutoReconnect = true,
